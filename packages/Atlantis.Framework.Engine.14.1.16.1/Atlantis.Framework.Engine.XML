@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Atlantis.Framework.Engine</name>
+    </assembly>
+    <members>
+        <member name="T:Atlantis.Framework.Engine.ICompletedRequest">
+            <summary>
+            Interface for the Completed request wrapper created by all types of engine requests
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.ICompletedRequest.Config">
+            <summary>
+            Returns the <c>ConfigElement</c> used for the request.
+            <remarks>Can be null in exception situations.</remarks>
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.ICompletedRequest.RequestData">
+            <summary>
+            Returns the <c>RequestData</c> object used for the request.
+            <remarks>Can be null in exception situations.</remarks>
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.ICompletedRequest.ResponseData">
+            <summary>
+            Returns the IResponseData created by the request.
+            <remarks>Can be null if an exception occurred.</remarks>
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.ICompletedRequest.ElapsedTime">
+            <summary>
+            Returns the time taken for the request to execute.
+            <remarks>Can be zero in some exception situations.</remarks>
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.ICompletedRequest.Exception">
+            <summary>
+            Returns an exception if an exception occured or null if no exception occurred
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.DefaultEngineLogger">
+            <summary>
+            The default logger for the engine.  It requires the following setting in web.config: Atlantis.Framework.Engine.LogWSURL
+            This logger logs to the godaddyLog database.  If entry in web.config is missing it will attempt to log to DEV
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.DefaultEngineLogger.#ctor">
+            <summary>
+            The default logger for the engine.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.DefaultEngineLogger.LogAtlantisException(Atlantis.Framework.Interface.AtlantisException)">
+            <summary>
+            Logs an <c>AtlantisException</c> to the godaddylog database
+            </summary>
+            <param name="atlantisException"><c>AtlantisException to log.</c></param>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.RequestCompletedDelegate">
+            <summary>
+            Delegate for a post request event.
+            </summary>
+            <param name="completedRequest"><c>ICompletedRequest</c> that will be passed to the delegate</param>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.Engine">
+            <summary>
+            The Atlantis Framework Engine.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.ProcessRequest(Atlantis.Framework.Interface.RequestData,System.Int32)">
+            <summary>
+            Executes the given request
+            </summary>
+            <param name="request"><c>RequestData</c> class that provides the inputs for the request.</param>
+            <param name="requestType"><c>int</c> request type id that maps to the desired <c>IRequest</c> handler in your atlantis.config file.</param>
+            <returns><c>IResponseData</c> that is output by the request handler.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.BeginProcessRequest(Atlantis.Framework.Interface.RequestData,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>
+            Executes the given requests BeginRequest for async pages
+            </summary>
+            <param name="request"><c>RequestData</c> class that provides the inputs for the request.</param>
+            <param name="requestType"><c>int</c> request type id that maps to the desired <c>IRequest</c> handler in your atlantis.config file.</param>
+            <param name="callback"></param>
+            <param name="state"></param>
+            <returns>IAsyncResult needed for ASP.NET async pages.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.EndProcessRequest(System.IAsyncResult)">
+            <summary>
+            Executes the EndRequest for an Engine request that was started with <b>BeginProcessRequest</b>
+            </summary>
+            <param name="asyncResult">async result provided by ASP.NET async page end task method</param>
+            <returns><c>IResponseData</c> that is output by the request handler.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.LogAtlantisException(Atlantis.Framework.Interface.AtlantisException)">
+            <summary>
+            Logs an exception to the Engines active <c>IErrorLogger</c>.
+            <para>You can override the default <c>IErrorLogger</c> used by the Engine by 
+            setting the <c>EngineLogging.EngineLogger</c> static property in your application
+            startup with your own class that implements <c>IErrorLogger</c>.</para>
+            </summary>
+            <param name="exception"><c>AtlantisException</c> to log.</param>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.LogAtlantisException``1(Atlantis.Framework.Interface.AtlantisException)">
+            <summary>
+            Creates an instance of <typeparamref name="T"/> that is <c>IEngineLogger</c> and Logs an exception to it.
+            </summary>
+            <typeparam name="T">Valid type that implements <c>IEngineLogger</c> and contains a parameterless constructor</typeparam>
+            <param name="exception"><c>AtlantisException</c> to log.</param>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.LogAtlantisException(Atlantis.Framework.Interface.AtlantisException,Atlantis.Framework.Interface.IErrorLogger)">
+            <summary>
+            Logs an exception to the given <c>IErrorLogger</c>
+            </summary>
+            <param name="exception"><c>AtlantisException</c> to log.</param>
+            <param name="errorLogger">Class that implements <c>IErrorLogger</c></param>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.ReloadConfig(System.String)">
+            <summary>
+            Clears the cache of loaded <c>IRequest</c> handlers and reloads the specified atlantis.config
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.ReloadConfig">
+            <summary>
+            Clears the cache of loaded <c>IRequest</c> handlers and reloads the atlantis.config
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.ClearAssemblyCache">
+            <summary>
+            Clears the cache of loaded <c>IRequest</c> handlers
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.GetConfigElements">
+            <summary>
+            Creates and returns a list of all Config Elements from the atlantis.config
+            </summary>
+            <returns>list of all Config Elements from the atlantis.config</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.Engine.TryGetConfigElement(System.Int32,Atlantis.Framework.Interface.ConfigElement@)">
+            <summary>
+            Attempts to find a config element of the given requestType
+            </summary>
+            <param name="requestType"><c>int</c> request type</param>
+            <param name="configElement">output variable for <c>ConfigElement</c> if it is found.</param>
+            <returns>true if the <c>ConfigElement</c> is found and the output variable is populated.</returns>
+        </member>
+        <member name="E:Atlantis.Framework.Engine.Engine.OnRequestCompleted">
+            <summary>
+            This event will get fired after every engine request.
+            Please ensure that you do not trigger another engine call from inside this event.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.Engine.EngineVersion">
+            <summary>
+            The FileVersion of the Engine Assembly
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.Engine.InterfaceVersion">
+            <summary>
+            The FileVersion of the Interface Assembly
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.Engine.EngineRequestSettings">
+            <summary>
+            The settings used to configure engine requests (triplets). Typically loaded from atlantis.config.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.Engine.LoggingStatus">
+            <summary>
+            Returns the current state of ErrorLogging
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.Engine.LastLoggingError">
+            <summary>
+            Returns the last exception that has happened when attempting to log an error
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.EngineLogging">
+            <summary>
+            Static class used to change the default engine logging sink
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.EngineLogging.EngineLogger">
+            <summary>
+            Gets or Sets the <c>IErrorLogger that the Engine will use.</c>
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.LoggingStatusType">
+            <summary>
+            Engine Logging Status
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Engine.LoggingStatusType.WorkingNormally">
+            <summary>
+            The last attempt to log was successful
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Engine.LoggingStatusType.Error">
+            <summary>
+            The last attempt to log was unsuccessful
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Engine.LoggingStatusType.NullLogger">
+            <summary>
+            The current IErrorLogger reference is null
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.#ctor">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogError(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogErrorAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogErrorAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogErrorEx(System.String,System.String,System.String,System.UInt32,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogErrorExAsync(System.String,System.String,System.String,System.UInt32,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogErrorExAsync(System.String,System.String,System.String,System.UInt32,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="E:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogErrorCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Atlantis.Framework.Engine.gdSiteLog.WSCgdSiteLogService.LogErrorExCompleted">
+            <remarks/>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.gdSiteLog.LogErrorCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.gdSiteLog.LogErrorCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.gdSiteLog.LogErrorCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.gdSiteLog.LogErrorExCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Atlantis.Framework.Engine.gdSiteLog.LogErrorExCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Atlantis.Framework.Engine.gdSiteLog.LogErrorExCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+    </members>
+</doc>

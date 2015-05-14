@@ -1,0 +1,873 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Atlantis.Framework.Interface</name>
+    </assembly>
+    <members>
+        <member name="T:Atlantis.Framework.Interface.AsyncState">
+            <summary>
+            Class used for ASP.NET async page compatible async engine call
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.AsyncState.#ctor(Atlantis.Framework.Interface.RequestData,Atlantis.Framework.Interface.ConfigElement,System.Object,System.Object)">
+            <summary>
+            Initializes the AsyncState object, and starts its call request timer
+            </summary>
+            <param name="requestData">RequestData object of the request</param>
+            <param name="config">ConfigElement of the request</param>
+            <param name="request">optional request object</param>
+            <param name="state">optional state object</param>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AsyncState.RequestData">
+            <summary>
+            returns the RequestData object
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AsyncState.Config">
+            <summary>
+            returns the atlantis.config object
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AsyncState.Request">
+            <summary>
+            Returns the request object
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AsyncState.State">
+            <summary>
+            Returns the State object
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AsyncState.CallTimer">
+            <summary>
+            Returns the call timer that was created and started when the AsyncState object was created.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.AtlantisException">
+            <summary>
+            AtlantisException object
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.AtlantisException.#ctor(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Creates an atlantis Exception
+            </summary>
+            <param name="sourceFunction">Source function name</param>
+            <param name="errorNumber">error number</param>
+            <param name="errorDescription">error description</param>
+            <param name="data">additional error data</param>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisException.LogTime">
+            <summary>
+            Time the exception object was created
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisException.SourceFunction">
+            <summary>
+            Source Function of the exception
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisException.ErrorNumber">
+            <summary>
+            Error Number of the exception
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisException.ErrorDescription">
+            <summary>
+            Description of the exception
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisException.ExData">
+            <summary>
+            Additional data of the exception.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.AtlantisExceptionWebState">
+            <summary>
+            Used to track AtlantisException logging data during the life of a web request.
+            These properties will be used by exception logging if a web context is available.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisExceptionWebState.ShopperId">
+            <summary>
+            Gets or sets the ShopperId exception state that will be used during exception logging
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisExceptionWebState.OriginIP">
+            <summary>
+            Gets or sets the OriginIP exception state that will be used during exception logging
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisExceptionWebState.OriginHost">
+            <summary>
+            Gets or sets the OriginHost exception state that will be used during exception logging
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.AtlantisExceptionWebState.OrderId">
+            <summary>
+            Gets or sets the OrderId exception state that will be used during exception logging
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ConfigElement">
+            <summary>
+            Represents an entry in the atlantis.config
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElement.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Creates a ConfigElement object
+            </summary>
+            <param name="requestType">Request type number. See Atlantis Framework Developers Guide</param>
+            <param name="progId">The namespace.classname of the IRequest handler class</param>
+            <param name="assembly">The assembly file name of where the class indicated in progId exists.</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElement.#ctor(System.Int32,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Creates a ConfigElement object
+            </summary>
+            <param name="requestType">Request type number. See Atlantis Framework Developers Guide</param>
+            <param name="progId">The namespace.classname of the IRequest handler class</param>
+            <param name="assembly">The assembly file name of where the class indicated in progId exists.</param>
+            <param name="configValues">Additional config values for the ConfigElement</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElement.GetConfigValue(System.String)">
+            <summary>
+            Returns a value from the additional config values on the ConfigElement. If key does not exist, returns empty string.
+            </summary>
+            <param name="key">Key value to look for.</param>
+            <returns>Additional config value, or empty string if key is not found.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElement.ResetStats">
+            <summary>
+            Replaces the existing ConfigElementStats object with a new one (threadsafe) and returns the existing one.
+            </summary>
+            <returns>The existing ConfigElementStats before it was replaced with a new one.</returns>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElement.RequestType">
+            <summary>
+            The RequestType id. See Atlantis Framework Developers Guide 
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElement.ProgID">
+            <summary>
+            The namespace.classname of the IRequest handler class
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElement.Assembly">
+            <summary>
+            The assembly file name of where the class indicated in ProgId exists
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElement.AssemblyFileVersion">
+            <summary>
+            Property where the Assembly File Version is stored once the assembly is loaded.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElement.AssemblyDescription">
+            <summary>
+            Property where the Assembly Description is stored once the assembly is loaded.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElement.Stats">
+            <summary>
+            Statistics that are gathered by the Engine
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ConfigElementStats">
+            <summary>
+            Class used to track statistics on altantis request types
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElementStats.LogFailure(System.Diagnostics.Stopwatch)">
+            <summary>
+            Threadsafe method to log a failure for the request type.
+            </summary>
+            <param name="callTimer">A Stopwatch object with the time elapsed for the failed request</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElementStats.LogSuccess(System.Diagnostics.Stopwatch)">
+            <summary>
+            Threadsafe method to log a success for the request type
+            </summary>
+            <param name="callTimer">A Stopwatch object with the time elapsed for the failed request</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElementStats.CalculateAverageFailTime">
+            <summary>
+            returns the average time for the last 100 failed requests
+            </summary>
+            <returns>average time for the last 100 failed requests</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ConfigElementStats.CalculateAverageSuccessTime">
+            <summary>
+            returns the average time for the last 100 successful requests
+            </summary>
+            <returns>average time for the last 100 successful requests</returns>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElementStats.StartTime">
+            <summary>
+            Time that the statistics object was created.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElementStats.Succeeded">
+            <summary>
+            Count of succeeded calls.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ConfigElementStats.Failed">
+            <summary>
+            Count of failed calls.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IAsyncRequest">
+            <summary>
+            Request handler interface for use with Page Async Tasks in ASP.NET async pages
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IAsyncRequest.BeginHandleRequest(Atlantis.Framework.Interface.RequestData,Atlantis.Framework.Interface.ConfigElement,System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes and starts the async handler and returns the IAsyncResult reference.
+            </summary>
+            <param name="requestData">RequestData for the request</param>
+            <param name="config">ConfigElement for the request</param>
+            <param name="callback">AsyncCallback object</param>
+            <param name="state">optional state object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IAsyncRequest.EndHandleRequest(System.IAsyncResult)">
+            <summary>
+            Completes the async handler and returns the IResponseData
+            </summary>
+            <param name="asyncResult">IAsyncResult reference for the running async request</param>
+            <returns>IResponseData result of the aync request</returns>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IDebugContext">
+            <summary>
+            Provider interface for capturing debug information during a container lifetime
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IDebugContext.GetDebugTrackingData">
+            <summary>
+            Returns a list of collected key value pairs
+            </summary>
+            <returns>a list of collected key value pairs</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IDebugContext.LogDebugTrackingData(System.String,System.String)">
+            <summary>
+            Adds a key value pair to the collected data
+            </summary>
+            <param name="key">key name</param>
+            <param name="data">data value</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IDebugContext.GetQaSpoofQueryValue(System.String)">
+            <summary>
+            Returns the value of a qa spoof querystring argument.  Querystring should be "qa--namehere" where namehere is the spoofParamName.
+            No value is returned if the ISiteContext.IsRequestInternal is false.
+            </summary>
+            <param name="spoofParamName">Querystring param name without the "qa--"</param>
+            <returns>Returns the value of a qa spoof querystring argument. No value is returned if the ISiteContext.IsRequestInternal is false.</returns>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IErrorLogger">
+            <summary>
+            Interface used by the Engine to log AtlantisException objects
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IErrorLogger.LogAtlantisException(Atlantis.Framework.Interface.AtlantisException)">
+            <summary>
+            Logs an AtlantisException object
+            </summary>
+            <param name="atlantisException">AtlantisException to log</param>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IManagerContext">
+            <summary>
+            Provider used to indicate state of C3 manager status on a request
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IManagerContext.IsManager">
+            <summary>
+            returns true if the request is a C3 manager impersonating a shopper
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IManagerContext.ManagerUserId">
+            <summary>
+            C3 manager user id
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IManagerContext.ManagerUserName">
+            <summary>
+            C3 manager user name
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IManagerContext.ManagerQuery">
+            <summary>
+            Additional manager querystring arguments that must be passed to subsequent requests
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IManagerContext.ManagerShopperId">
+            <summary>
+            The shopper id that the C3 manager is impersonating
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IManagerContext.ManagerPrivateLabelId">
+            <summary>
+            The private label id of the shopper that the C3 manager is impersonating
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IManagerContext.ManagerContextId">
+            <summary>
+            The context id based on the private label id of the impersonated shopper
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IProviderContainer">
+            <summary>
+            Interface for our Inversion of Control Containers. See the Atlantis Developers Guide on our Provider Pattern
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProviderContainer.RegisterProvider``2">
+            <summary>
+            Registers a Provider interface and implementation type with the container. Implementation type must inherit ProviderBase.
+            </summary>
+            <typeparam name="TProviderInterface">interface for the provider</typeparam>
+            <typeparam name="TProvider">implementation type for the provider</typeparam>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProviderContainer.Resolve``1">
+            <summary>
+            Returns the containers' implementation instance of the requested interface.
+            </summary>
+            <typeparam name="TProviderInterface">interface requested</typeparam>
+            <returns>Returns the containers' implementation instance of the requested interface.</returns>
+            <exception cref="T:System.ArgumentException">Throws ArgumentException if interface is not registered.</exception>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProviderContainer.TryResolve``1(``0@)">
+            <summary>
+            Returns true if the container has the interface registered and sets the output provider to the implementation instance.
+            </summary>
+            <typeparam name="TProviderInterface">interface requested</typeparam>
+            <param name="provider">If interface is registered, this is set to the implmentation instance</param>
+            <returns>true of the interface is registered.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProviderContainer.CanResolve``1">
+            <summary>
+            Returns true if the interface is registered with the container
+            </summary>
+            <typeparam name="TProviderInterface">interface requested</typeparam>
+            <returns>true if the interface is registered with the container</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProviderContainer.GetData``1(System.String,``0)">
+            <summary>
+            Gets arbitrary data items that are stored in the container. This data exists for the same lifetime as the provider instances in the container.
+            </summary>
+            <typeparam name="T">output type to attempt to convert the data to.</typeparam>
+            <param name="key">key for the data</param>
+            <param name="defaultValue">default value to return if the key is not found or the data does not convert properly to type T</param>
+            <returns>data value or defaultValue if not found.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProviderContainer.SetData``1(System.String,``0)">
+            <summary>
+            Stores arbitrary data items into the container. This data exists for the same lifetime as the provider instances in the container. 
+            </summary>
+            <typeparam name="T">type of data getting stored</typeparam>
+            <param name="key">key for the data</param>
+            <param name="value">data value of type T to store</param>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IProxyContext">
+            <summary>
+            Use to recognize known proxies and retrieve proper host and client IP from them.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProxyContext.IsProxyActive(Atlantis.Framework.Interface.ProxyTypes)">
+            <summary>
+            Checks to see if a proxy of the given type is active for the request.
+            </summary>
+            <param name="proxyType">Type of proxy<see cref="T:Atlantis.Framework.Interface.ProxyTypes"/></param>
+            <returns>true if the type is active for the current request</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProxyContext.TryGetActiveProxy(Atlantis.Framework.Interface.ProxyTypes,Atlantis.Framework.Interface.IProxyData@)">
+            <summary>
+            Attempts to get the proxy data from the active proxy chain.
+            </summary>
+            <param name="proxyType">Type of proxy<see cref="T:Atlantis.Framework.Interface.ProxyTypes"/></param>
+            <param name="proxyData">Proxy data output<see cref="T:Atlantis.Framework.Interface.IProxyData"/></param>
+            <returns>Proxy data<see cref="T:Atlantis.Framework.Interface.IProxyData"/></returns>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyContext.Status">
+            <summary>
+            Gets the status of all proxies. If Valid or Empty, the values can be trusted from the ActiveProxyChain
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyContext.ActiveProxyChain">
+            <summary>
+            Returns an enumerable IProxyData objects that are active. The first one is the nearest proxy to the request, the last one is the farthest away proxy in the chain.
+            OriginIP comes from the farthest proxy.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyContext.OriginIP">
+            <summary>
+            The IP address of the furthest active proxy. If no proxies exist, this is the UserHostAddress of the current request.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyContext.OriginHost">
+            <summary>
+            The Host of the furthest active proxy.  If no proxies exist, this is the Request.Url.Host of the current request.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyContext.ContextHost">
+            <summary>
+            The Host that should be used to get context.  Not always the furthest away proxy host.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IProxyData">
+            <summary>
+            Contains information about proxy requests
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IProxyData.TryGetExtendedData(System.String,System.String@)">
+            <summary>
+            Attempt to get any extended data (like language) from the proxy
+            </summary>
+            <param name="key">name of value to get</param>
+            <param name="value">output value</param>
+            <returns>true if a value is found for the given key</returns>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyData.OriginalIP">
+            <summary>
+            Original IP address of the proxied request
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyData.OriginalHost">
+            <summary>
+            Original Host address of the proxied request
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyData.IsContextualHost">
+            <summary>
+            true if the host can be used for context
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IProxyData.ProxyType">
+            <summary>
+            Type of proxy <see cref="T:Atlantis.Framework.Interface.ProxyTypes"/>
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IRequest">
+            <summary>
+            Interface that must be implemented by engine request handler types that are specified in the atlantis.config. See Atlantis Developers Guide.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IRequest.RequestHandler(Atlantis.Framework.Interface.RequestData,Atlantis.Framework.Interface.ConfigElement)">
+            <summary>
+            Handles the request from the Engine
+            </summary>
+            <param name="requestData">RequestData object</param>
+            <param name="config">ConfigElement from the atlantis.config</param>
+            <returns>IResponseData object for the request</returns>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IResponseData">
+            <summary>
+            Interface required for triplet response data classes. See Atlantis Developers Guide.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IResponseData.ToXML">
+            <summary>
+            Returns xml representing the response data.
+            </summary>
+            <returns>Xml representing the response data.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IResponseData.GetException">
+            <summary>
+            Returns an exception that may have happened during the request.
+            </summary>
+            <returns>Returns an exception that happened during the request. The engine will log this and then throw it.</returns>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.IShopperContext">
+            <summary>
+            Interface for Shopper Context Providers
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IShopperContext.ClearShopper">
+            <summary>
+            Sets the ShopperId to empty string.
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IShopperContext.SetLoggedInShopper(System.String)">
+            <summary>
+            Sets the logged in shopper into session after validating the shopperid and other items that indicate logged in status (like cookies)
+            </summary>
+            <param name="shopperId">ShopperId to set as logged in in the session.</param>
+            <returns>true if the shopperid was set into the logged in session</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IShopperContext.SetLoggedInShopperWithCookieOverride(System.String)">
+            <summary>
+            Sets the logged in shopper regardless of any other validation. This should only be used when you are absolutely sure you're code
+            is allowed to set this shopperid as logged in.
+            </summary>
+            <param name="shopperId">ShopperId to set to logged in.</param>
+            <returns>true of shopper was successfully set into the logged in session</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.IShopperContext.SetNewShopper(System.String)">
+            <summary>
+            Sets the shopper id to the given shopper id and the status to Public
+            </summary>
+            <param name="shopperId">shopperid to set as the new shopper</param>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IShopperContext.ShopperId">
+            <summary>
+            returns the shopperid of the current request/container
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IShopperContext.ShopperStatus">
+            <summary>
+            Returns the ShopperStatusType of the ShopperId
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.IShopperContext.ShopperPriceType">
+            <summary>
+            Returns the ShopperPriceType of the ShopperId
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ISiteContext">
+            <summary>
+            Site Context Provider Interface
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ISiteContext.NewCrossDomainCookie(System.String,System.DateTime)">
+            <summary>
+            Creates a crossdomain cookie with an expiration
+            </summary>
+            <param name="cookieName">name of cookie</param>
+            <param name="expiration">expiration time</param>
+            <returns>HttpCookie object that can be Set on the response</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ISiteContext.NewCrossDomainMemCookie(System.String)">
+            <summary>
+            Creates a crossdomain mem-cookie (only for browser session)
+            </summary>
+            <param name="cookieName">name of cookie</param>
+            <returns>HttpCookie object that can be Set on the response</returns>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.ContextId">
+            <summary>
+            The context id of the request/container (1=godaddy, 2=wwd, 5=br, 6=reseller). This is NOT privatelabelid
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.StyleId">
+            <summary>
+            StyleId string to use.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.PrivateLabelId">
+            <summary>
+            The private label id of the request/container.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.ProgId">
+            <summary>
+            The progid of the request/container.
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.PageCount">
+            <summary>
+            Pagecount value from traffic system and cookies
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.Pathway">
+            <summary>
+            Pathway value from traffic system and cookies
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.CI">
+            <summary>
+            CI code that normally comes from the querystring
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.ISC">
+            <summary>
+            ISC value that can come from the querystring or traffic cookies
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.IsRequestInternal">
+            <summary>
+            Returns true if the request is coming from an internal IP address
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.ServerLocation">
+            <summary>
+            Server environment (dev, test, prod, ote)
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ISiteContext.Manager">
+            <summary>
+            IManagerContext provider that will indicate C3 manager mode.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ProviderBase">
+            <summary>
+            Base class that must be inherited by all Atlantis Providers. See Atlantis Developers Guide on Providers
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ProviderBase.#ctor(Atlantis.Framework.Interface.IProviderContainer)">
+            <summary>
+            All Providers are required to implement a constructor that calls this base constructor
+            </summary>
+            <param name="container">The IProviderContainer this instance was created for.</param>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.ProviderBase.Container">
+            <summary>
+            Returns the IProviderContainer that this provider was created for.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ProxyStatusType">
+            <summary>
+            ProxyStatusType used with known proxy detection in IProxyContext providers
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyStatusType.Undetermined">
+            <summary>
+            Proxy status is not yet determined.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyStatusType.None">
+            <summary>
+            No known proxy information exists.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyStatusType.Invalid">
+            <summary>
+            Proxy information exists but is not valid.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyStatusType.Valid">
+            <summary>
+            Proxy information exists and is valid
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ProxyTypes">
+            <summary>
+            Types of supported proxies
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyTypes.None">
+            <summary>
+            Default type of none
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyTypes.LocalARR">
+            <summary>
+            A 'same box' proxy using Microsoft ARR.  Example: www.wildwestdomains.com proxying an origin site on the same box
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyTypes.CountrySiteARR">
+            <summary>
+            An ARR proxy (same box or different) that is used for our country sites like ca.godaddy.com
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyTypes.CustomResellerARR">
+            <summary>
+            Custom reseller proxy that is proxying custom domain for a reseller like www.maddogdomains.com
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyTypes.TransPerfectTranslation">
+            <summary>
+            Transperfect language proxy (es.godaddy.com)
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyTypes.AkamaiDSA">
+            <summary>
+            Akamai Dynamic site acceleration
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ProxyTypes.SmartlingTranslation">
+            <summary>
+            Smartling language proxy
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.RequestData">
+            <summary>
+            Base class for all Triplet RequestData classes. See Atlantis Framework Developers Guide
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.RequestData.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.RequestData.#ctor(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Obsolete constructor
+            </summary>
+            <param name="shopperId">Shopperid if required.</param>
+            <param name="sourceURL">obsolete</param>
+            <param name="orderId">obsolete</param>
+            <param name="pathway">obsolete</param>
+            <param name="pageCount">obsolete</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.RequestData.GetCacheMD5">
+            <summary>
+            Override this method when creating a triplet that is cacheable in DataCache. Please see presentation on best practices for cacheable triplets
+            </summary>
+            <returns>The cache key for this request.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.RequestData.ToXML">
+            <summary>
+            Returns xml representation of the requestdata parameters.
+            </summary>
+            <returns>xml representation of the requestdata parameters.</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.RequestData.BuildHashFromStrings(System.String[])">
+            <summary>
+            Builds a hash from multiple strings. Do not use for short cache keys. Please see presentation on best practices for cacheable triplets.
+            </summary>
+            <param name="values">string values to use to build hash</param>
+            <returns>MD5 hash value caculated from the given strings.</returns>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.RequestData.ShopperID">
+            <summary>
+            Gets and sets the ShopperID of the requestdata. Not used by RequestData objects that do not require shopperId
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.RequestData.SourceURL">
+            <summary>
+            Obsolete
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.RequestData.OrderID">
+            <summary>
+            Obsolete
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.RequestData.Pathway">
+            <summary>
+            Obsolete
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.RequestData.PageCount">
+            <summary>
+            Obsolete
+            </summary>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.RequestData.RequestTimeout">
+            <summary>
+            RequestTimeout that the RequestHandler will use if appropriate.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ResponseData">
+            <summary>
+            Base class to use for Triplet ResponseData classes
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ResponseData.ToXML">
+            <summary>
+            Returns a single element indicating the type name of the IResponseData. Property is obsolete, so do not override.
+            </summary>
+            <returns>Returns a single element indicating the type name of the IResponseData</returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.ResponseData.GetException">
+            <summary>
+            Returns null. If using this base class, do not override this; ensure your triplet is following newer best practices and
+            throwing exceptions instead of attaching them to response data objects.
+            </summary>
+            <returns>null</returns>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ServerLocationType">
+            <summary>
+            Location of the running code
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ServerLocationType.Undetermined">
+            <summary>
+            Undetermined
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ServerLocationType.Dev">
+            <summary>
+            Dev
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ServerLocationType.Test">
+            <summary>
+            Test
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ServerLocationType.Ote">
+            <summary>
+            OTE (online testing and evaluation)
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ServerLocationType.Prod">
+            <summary>
+            Production
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.ShopperStatusType">
+            <summary>
+            Shopper authentication status
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ShopperStatusType.Unknown">
+            <summary>
+            Shopper status is unknown
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ShopperStatusType.Public">
+            <summary>
+            Shopper is empty, or known, but not logged in.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ShopperStatusType.PartiallyTrusted">
+            <summary>
+            Shopper cookies indicate they may have logged in somewhere but they are NOT logged into this application. Send through SSO if you need to get them fully authenticated.
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ShopperStatusType.Authenticated">
+            <summary>
+            Shopper is logged into this application's session
+            </summary>
+        </member>
+        <member name="F:Atlantis.Framework.Interface.ShopperStatusType.Manager">
+            <summary>
+            Shopper is being impersonated by a c3 manager. Please note there are some things managers are not allowed to do; verify your requirements.
+            </summary>
+        </member>
+        <member name="T:Atlantis.Framework.Interface.WsConfigElement">
+            <summary>
+            An atlantis config element that has a webservice url in the config
+            </summary>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.WsConfigElement.#ctor(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Creates a WsConfigElement object
+            </summary>
+            <param name="requestType">Request type number. See Atlantis Framework Developers Guide</param>
+            <param name="progId">The namespace.classname of the IRequest handler class</param>
+            <param name="assembly">The assembly file name of where the class indicated in progId exists.</param>
+            <param name="webServiceUrl">service url</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.WsConfigElement.#ctor(System.Int32,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Creates a WsConfigElement object
+            </summary>
+            <param name="requestType">Request type number. See Atlantis Framework Developers Guide</param>
+            <param name="progId">The namespace.classname of the IRequest handler class</param>
+            <param name="assembly">The assembly file name of where the class indicated in progId exists.</param>
+            <param name="webServiceUrl">service url</param>
+            <param name="configValues">Additional config values for the WsConfigElement</param>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.WsConfigElement.GetClientCertificate">
+            <summary>
+            Retrieves the friendly name to look up from a ConfigValue element with a key of "ClientCertificateName"
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Atlantis.Framework.Interface.WsConfigElement.GetClientCertificate(System.String)">
+            <summary>
+            Retrieves the client certificate using the named additional config value
+            </summary>
+            <param name="configKey">Name of additional config value to find the certificate name in.</param>
+            <returns>Certificate if found and not expired.</returns>
+            <exception cref="T:Atlantis.Framework.Interface.AtlantisException">If certificate is not found, cannot be opened, or is expired.</exception>
+        </member>
+        <member name="P:Atlantis.Framework.Interface.WsConfigElement.WSURL">
+            <summary>
+            The service url from the configElement
+            </summary>
+        </member>
+    </members>
+</doc>

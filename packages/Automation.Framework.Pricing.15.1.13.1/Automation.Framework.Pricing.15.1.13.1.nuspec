@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Automation.Framework.Pricing</id>
+    <version>15.1.13.1</version>
+    <title>Automation Framework Pricing</title>
+    <authors>GoDaddy.com, LLC</authors>
+    <owners>GoDaddy.com, LLC</owners>
+    <projectUrl>https://confluence.int.godaddy.com/display/ATLANTIS</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Automation Framework Pricing</description>
+    <releaseNotes />
+    <tags>Automation Framework Pricing</tags>
+    <dependencies>
+      <dependency id="Automation.Framework.Enums" version="14.12.17.1" />
+      <dependency id="Newtonsoft.Json" version="6.0.6" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Automation.Framework.Shopper</id>
+    <version>14.8.8.1</version>
+    <title>Automation Framework Shopper</title>
+    <authors>GoDaddy.com, LLC</authors>
+    <owners>GoDaddy.com, LLC</owners>
+    <projectUrl>https://confluence.int.godaddy.com/display/EPW/Shopper</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Automation Framework Shopper</description>
+    <releaseNotes />
+    <tags>Automation Framework Shopper</tags>
+    <dependencies>
+      <dependency id="Atlantis.Framework.MiniEncrypt" version="4.13.11.13" />
+      <dependency id="Automation.Framework.Data" version="14.4.29.1" />
+      <dependency id="mongocsharpdriver" version="1.9.1" />
+      <dependency id="Newtonsoft.Json" version="6.0.3" />
+    </dependencies>
+  </metadata>
+</package>

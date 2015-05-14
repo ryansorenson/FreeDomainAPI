@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Automation.Framework.Data</id>
+    <version>15.5.14.1</version>
+    <title>Automation Framework Data</title>
+    <authors>GoDaddy.com, LLC</authors>
+    <owners>GoDaddy.com, LLC</owners>
+    <projectUrl>https://confluence.int.godaddy.com/display/ATLANTIS</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Automation Framework Data</description>
+    <releaseNotes>15.4.9.1 - Updates to support Buckeye Error DB through settings file</releaseNotes>
+    <tags>Automation Framework Data</tags>
+    <dependencies>
+      <dependency id="Atlantis.Framework.Nimitz" version="14.2.21.1" />
+      <dependency id="Automation.Framework.Enums" version="15.4.2.1" />
+      <dependency id="Automation.Framework.ProductTiers" version="15.3.26.2" />
+    </dependencies>
+  </metadata>
+</package>

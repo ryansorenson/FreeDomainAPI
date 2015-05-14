@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Atlantis.Framework.Engine</id>
+    <version>14.1.16.1</version>
+    <title>Atlantis.Framework.Engine</title>
+    <authors>GoDaddy</authors>
+    <owners>GoDaddy</owners>
+    <projectUrl>https://github.secureserver.net/Atlantis/Engine/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Release Build</description>
+    <releaseNotes>14.1.16.1: ATLANTIS-146: Update the engine configuration system so that atlantis.config can be loaded from different locations or configured programmatically.
+      4.13.12.22: ATLANTIS-6: Updates based on Interface 4.13.12.22 (must go together)</releaseNotes>
+    <tags>Atlantis.Framework.Engine</tags>
+    <dependencies>
+      <dependency id="Atlantis.Framework.Interface" version="14.1.16.1" />
+    </dependencies>
+  </metadata>
+</package>

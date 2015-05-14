@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Atlantis.Framework.MiniEncrypt</id>
+    <version>4.13.12.21</version>
+    <title>Atlantis.Framework.MiniEncrypt</title>
+    <authors>GoDaddy</authors>
+    <owners>GoDaddy</owners>
+    <projectUrl>https://confluence.int.godaddy.com/display/ATLANTIS</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Release Build</description>
+    <releaseNotes>Updated interop files to not be included in Nuget Package</releaseNotes>
+    <tags>Atlantis.Framework.MiniEncrypt</tags>
+  </metadata>
+</package>

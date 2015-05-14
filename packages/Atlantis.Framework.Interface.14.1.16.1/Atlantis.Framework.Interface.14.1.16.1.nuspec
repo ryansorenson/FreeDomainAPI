@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Atlantis.Framework.Interface</id>
+    <version>14.1.16.1</version>
+    <title>Atlantis.Framework.Interface</title>
+    <authors>GoDaddy</authors>
+    <owners>GoDaddy</owners>
+    <projectUrl>https://github.secureserver.net/Atlantis/Engine/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Release Build</description>
+    <releaseNotes>4.13.12.22: ATLANTIS-6: Removed use of Providers to get error handling properties (requires same version of engine or later)</releaseNotes>
+    <tags>Atlantis.Framework.Interface</tags>
+  </metadata>
+</package>

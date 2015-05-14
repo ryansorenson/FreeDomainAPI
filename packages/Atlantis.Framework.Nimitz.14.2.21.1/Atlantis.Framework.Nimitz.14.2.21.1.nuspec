@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Atlantis.Framework.Nimitz</id>
+    <version>14.2.21.1</version>
+    <title>Atlantis.Framework.Nimitz</title>
+    <authors>GoDaddy</authors>
+    <owners>GoDaddy</owners>
+    <projectUrl>https://github.secureserver.net/Atlantis/Nimitz</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Release Build</description>
+    <releaseNotes>14.2.21.1 : Added abstract class DataReaderRequestBase</releaseNotes>
+    <tags>Atlantis.Framework.Nimitz</tags>
+    <dependencies>
+      <dependency id="Atlantis.Framework.Engine" version="14.1.16.1" />
+    </dependencies>
+  </metadata>
+</package>
